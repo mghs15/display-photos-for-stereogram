@@ -1,0 +1,16 @@
+{
+    "version": 8,
+    "name": "gsimapvector",
+    "glyphs": "https://gsi-cyberjapan.github.io/optimal_bvmap/glyphs/{fontstack}/{range}.pbf",
+    "sprite": "https://gsi-cyberjapan.github.io/optimal_bvmap/sprite/std",
+    "sources": {},
+    "layers":[
+        {
+            "id":"background",
+            "type":"background",
+            "paint":{
+               "background-color": "rgba(200,200,200,1)"
+            }
+        }
+    ]
+}
