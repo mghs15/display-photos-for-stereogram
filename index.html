@@ -268,8 +268,21 @@ const createMap = (container, url, uniqueId, rotate) => {
       p.removeChild(p.firstChild);
     }
     p.appendChild(iframe);
-  
+    
+    document.getElementById("rotatePlus90").addEventListener("click", () => {
+      const _rotate = iframe.style.rotate ? +iframe.style.rotate.split("deg")[0] : 0;
+      const _newRotate = _rotate  + 90;
+      iframe.style.rotate = _newRotate + "deg";
+    });
+    
+    document.getElementById("rotateMinus90").addEventListener("click", () => {
+      const _rotate = iframe.style.rotate ? +iframe.style.rotate.split("deg")[0] : 0;
+      const _newRotate = _rotate  - 90;
+      iframe.style.rotate = _newRotate + "deg";
+    });
+    
     return;
+    
   }
   
     
