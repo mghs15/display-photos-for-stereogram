@@ -155,6 +155,33 @@ map.on('load', () => {
       'circle-radius': 4
     }
   });
+  
+  map.addLayer({
+    'id': 'photo-points-text',
+    'type': 'symbol',
+    'source': 'photo-points',
+    'minzoom': 11,
+    'layout': {
+      'text-font': ["NotoSansJP-Regular"],
+      'text-field': [
+        "concat",
+        ["get", "コース番号"],
+        "\n",
+        ["get", "写真番号"]
+      ],
+      'text-size': 8,
+      'text-anchor': "top-left",
+      'text-allow-overlap': true
+    },
+    'paint': {
+      'text-color': [
+        'case',
+        ['boolean', ['feature-state', 'selected'], false],
+        "#FF0000",
+        "#0000FF"
+      ]
+    }
+  });
 
 });
 
