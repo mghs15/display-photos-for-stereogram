@@ -26,3 +26,5 @@
 * 地理院地図 https://maps.gsi.go.jp/
 * 国土地理院 令和6年(2024年)能登半島地震に関する情報 https://www.gsi.go.jp/BOUSAI/20240101_noto_earthquake.html
 
+* javascriptでクリックやタップの長押し処理をする方法 (Qiita) https://qiita.com/rahhi555/items/c1028b5a13ed3bf970b3
+
