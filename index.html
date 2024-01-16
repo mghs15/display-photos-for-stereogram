@@ -48,9 +48,49 @@ body { margin: 0; padding:0;}
   grid-column: 1 / 2;
 }
 
-#leftmap {
+#rightmap {
+  grid-row: 3 / 4;
+  grid-column: 2 / 3;
+}
+
+#leftmark-area {
+  position: relative;
   grid-row: 3 / 4;
   grid-column: 1 / 2;
+  pointer-events: none;
+  vertical-align: center;
+  z-index: 9999;
+}
+
+#rightmark-area {
+  position: relative;
+  grid-row: 3 / 4;
+  grid-column: 2 / 3;
+  pointer-events: none;
+  vertical-align: center;
+  z-index: 9999;
+}
+
+#leftmark {
+  position: absolute;
+  display: inline-block;
+  color: red;
+  pointer-events: none;
+  text-align: center;
+  height: 20px;
+  right: 60px;
+  top: 60px;
+}
+
+#rightmark {
+  position: absolute;
+  display: inline-block;
+  color: red;
+  pointer-events: none;
+  text-align: center;
+  height: 20px;
+  left: 60px;
+  top: 60px;
 }
 
 #control {
@@ -73,18 +113,26 @@ body { margin: 0; padding:0;}
 
 </style>
 <body>
-<h1>国土地理院の空中写真で立体視</h1>
+
 <div id="main">
  <div id="map"></div>
  <div id="control">
+   写真：
    <button id="zoomPlus">＋</button>
    <button id="zoomMinus">－</button>
    <button id="rotatePlus90">90°左回転</button>
    <button id="rotateMinus90">90°右回転</button>
    <button id="leftRightReplace">左右入替</button>
+   | マーク：
+   <button id="moveMarkFar">←→</button>
+   <button id="moveMarkClose">→←</button>
+   <button id="moveMarkUp">↑</button>
+   <button id="moveMarkDown">↓</button>
  </div>
  <div id="leftmap"></div>
  <div id="rightmap"></div>
+ <div id="leftmark-area"><div id="leftmark">+</div></div>
+ <div id="rightmark-area"><div id="rightmark">+</div></div>
 </div>
 <script>
 
@@ -393,6 +441,50 @@ document.getElementById("leftRightReplace").addEventListener("click", () => {
   lm.id= "tmp";
   rm.id = "leftmap";
   lm.id="rightmap";  
+});
+
+
+
+document.getElementById("moveMarkFar").addEventListener("click", () => {
+  const lm = document.getElementById("leftmark");
+  const rm = document.getElementById("rightmark");
+  
+  lm.style.right = lm.style.right ? (+lm.style.right.replace("px", "")*1 + 0.5) + "px" : "60px";
+  rm.style.left = rm.style.left ? (+rm.style.left.replace("px", "")*1 + 0.5)+ "px" : "60px";
+  
+  console.log(lm.style.right, rm.style.left);
+  
+});
+
+
+document.getElementById("moveMarkClose").addEventListener("click", () => {
+  const lm = document.getElementById("leftmark");
+  const rm = document.getElementById("rightmark");
+  
+  lm.style.right = lm.style.right ? (+lm.style.right.replace("px", "")*1 - 0.5) + "px" : "60px";
+  rm.style.left = rm.style.left ? (+rm.style.left.replace("px", "")*1 - 0.5)+ "px" : "60px";
+  
+  console.log(lm.style.right, rm.style.left);
+  
+});
+
+
+document.getElementById("moveMarkDown").addEventListener("click", () => {
+  const lm = document.getElementById("leftmark");
+  const rm = document.getElementById("rightmark");
+  
+  lm.style.top = lm.style.top ? (+lm.style.top.replace("px", "")*1 + 1) + "px" : "60px";
+  rm.style.top = rm.style.top ? (+rm.style.top.replace("px", "")*1 + 1)+ "px" : "60px";
+    
+});
+
+document.getElementById("moveMarkUp").addEventListener("click", () => {
+  const lm = document.getElementById("leftmark");
+  const rm = document.getElementById("rightmark");
+  
+  lm.style.top = lm.style.top ? (+lm.style.top.replace("px", "")*1 - 1) + "px" : "60px";
+  rm.style.top = rm.style.top ? (+rm.style.top.replace("px", "")*1 - 1)+ "px" : "60px";
+    
 });
 
 </script>
