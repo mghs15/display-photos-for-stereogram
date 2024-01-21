@@ -78,8 +78,8 @@ body { margin: 0; padding:0;}
   pointer-events: none;
   text-align: center;
   height: 20px;
-  right: 60px;
-  top: 60px;
+  right: 110px;
+  top: 110px;
 }
 
 #rightmark {
@@ -89,8 +89,8 @@ body { margin: 0; padding:0;}
   pointer-events: none;
   text-align: center;
   height: 20px;
-  left: 60px;
-  top: 60px;
+  left: 110px;
+  top: 110px;
 }
 
 #control {
@@ -136,11 +136,12 @@ body { margin: 0; padding:0;}
    <button id="moveMarkClose">→←</button>
    <button id="moveMarkUp">↑</button>
    <button id="moveMarkDown">↓</button>
+   <span id="mark-res" style="display:inline-block; color:red; width:80px;">---</span>
  </div>
  <div id="leftmap"></div>
  <div id="rightmap"></div>
- <div id="leftmark-area"><div id="leftmark">+</div></div>
- <div id="rightmark-area"><div id="rightmark">+</div></div>
+ <div id="leftmark-area"><div id="leftmark"><img src="./mark.svg" width="16px"></div></div>
+ <div id="rightmark-area"><div id="rightmark"><img src="./mark.svg" width="16px"></div></div>
  
  <div id="footer"><a href="https://github.com/mghs15/display-photos-for-stereogram?tab=readme-ov-file#%E5%8F%82%E8%80%83" target="_blank">参考文献</a></div>
 </div>
@@ -458,16 +459,23 @@ document.getElementById("leftRightReplace").addEventListener("click", () => {
 document.getElementById("moveMarkFar").addEventListener("pointerdown", () => {
 
   const intervalId = setInterval( () => {
+  
     const lm = document.getElementById("leftmark");
     const rm = document.getElementById("rightmark");
     
-    lm.style.right = lm.style.right ? (+lm.style.right.replace("px", "")*1 + 0.5) + "px" : "60px";
-    rm.style.left = rm.style.left ? (+rm.style.left.replace("px", "")*1 + 0.5)+ "px" : "60px";
+    const rpx = (+lm.style.right.replace("px", "")*1 + 0.5);
+    const lpx = (+rm.style.left.replace("px", "")*1 + 0.5);
+    
+    lm.style.right = lm.style.right ? rpx + "px" : "110px";
+    rm.style.left = rm.style.left ?   lpx + "px" : "110px";
+    
+    console.log(lm.style.right, rm.style.left);
+    document.getElementById("mark-res").innerText = (rpx + lpx) + "px";
+    
   }, 200);
   
   document.addEventListener('pointerup', () => {
     clearInterval(intervalId);
-    console.log(lm.style.right, rm.style.left);
   }, { once: true })
   
 });
@@ -476,16 +484,23 @@ document.getElementById("moveMarkFar").addEventListener("pointerdown", () => {
 document.getElementById("moveMarkClose").addEventListener("pointerdown", () => {
   
   const intervalId = setInterval( () => {
+  
     const lm = document.getElementById("leftmark");
     const rm = document.getElementById("rightmark");
     
-    lm.style.right = lm.style.right ? (+lm.style.right.replace("px", "")*1 - 0.5) + "px" : "60px";
-    rm.style.left = rm.style.left ? (+rm.style.left.replace("px", "")*1 - 0.5)+ "px" : "60px";
+    const rpx = (+lm.style.right.replace("px", "")*1 - 0.5);
+    const lpx = (+rm.style.left.replace("px", "")*1 - 0.5);
+    
+    lm.style.right = lm.style.right ? rpx + "px" : "110px";
+    rm.style.left = rm.style.left ?   lpx + "px" : "110px";
+    
+    console.log(lm.style.right, rm.style.left);
+    document.getElementById("mark-res").innerText = (rpx + lpx) + "px";
+    
   }, 200);
   
   document.addEventListener('pointerup', () => {
     clearInterval(intervalId);
-    console.log(lm.style.right, rm.style.left);
   }, { once: true })
   
 });
@@ -497,8 +512,8 @@ document.getElementById("moveMarkDown").addEventListener("pointerdown", () => {
     const lm = document.getElementById("leftmark");
     const rm = document.getElementById("rightmark");
     
-    lm.style.top = lm.style.top ? (+lm.style.top.replace("px", "")*1 + 1) + "px" : "60px";
-    rm.style.top = rm.style.top ? (+rm.style.top.replace("px", "")*1 + 1)+ "px" : "60px";
+    lm.style.top = lm.style.top ? (+lm.style.top.replace("px", "")*1 + 1) + "px" : "110px";
+    rm.style.top = rm.style.top ? (+rm.style.top.replace("px", "")*1 + 1)+ "px" : "110px";
   }, 100);
   
   document.addEventListener('pointerup', () => {
@@ -513,8 +528,8 @@ document.getElementById("moveMarkUp").addEventListener("pointerdown", () => {
     const lm = document.getElementById("leftmark");
     const rm = document.getElementById("rightmark");
     
-    lm.style.top = lm.style.top ? (+lm.style.top.replace("px", "")*1 - 1) + "px" : "60px";
-    rm.style.top = rm.style.top ? (+rm.style.top.replace("px", "")*1 - 1)+ "px" : "60px";
+    lm.style.top = lm.style.top ? (+lm.style.top.replace("px", "")*1 - 1) + "px" : "110px";
+    rm.style.top = rm.style.top ? (+rm.style.top.replace("px", "")*1 - 1)+ "px" : "110px";
   }, 100);
   
   document.addEventListener('pointerup', () => {
